@@ -1,0 +1,208 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>Master Bikes</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body-tertiary">
+        <div class="container-fluid">
+            <button class="navbar-toggler order-2 order-md-1" type="button" data-bs-toggle="collapse"
+                data-bs-target=".navbar-collapse" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse order-3 order-md-2" id="navbar-left">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'servicios' %}">Producto y Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formulario.html">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre-mi">Sobre nosotros</a>
+                    </li>
+                </ul>
+            </div>
+            <a class="navbar-brand order-1 order-md-3" href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}"
+                    alt="Logo" class="responsive-logo"></a>
+            <div class="collapse navbar-collapse order-4 order-md-4" id="navbar-right">
+                <ul class="navbar-nav ms-auto d-flex ">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <!--<a class="nav-link" href=""><i class="bi bi-person-circle carrito-login"></i></a>-->
+                                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                            </form>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                        </li>
+                        {% endif %}
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}"><i class="bi bi-person-circle carrito-login"></i></a>
+                    </li>
+                    -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'carrito' %}"><i class="bi bi-cart4 carrito-login"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                            <button class="btn  btn-rosado" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://s1.1zoom.me/b5050/837/355636-admin_1920x1080.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://s1.1zoom.me/b6460/742/Forests_Bicycle_565602_1920x1080.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://s1.1zoom.me/b5050/225/356755-admin_1920x1080.jpg"
+                        class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <section class="services-section">
+            <div class="service">
+                <i class="bi bi-bicycle"></i>
+                <h3>ACCESORIOS</h3>
+                <p>Nos  el cuidado y atención que tus bicicletas merecen. Nos dedicamos a mantenerlas en su mejor
+                    estado y adaptarlas a ti.</p>
+            </div>
+            <div class="service">
+                <i class="bi bi-tools"></i>
+                <h3>SERVICIO TECNICO</h3>
+                <p>Garantizamos el cuidado y atención que tus bicicletas merecen. Nos dedicamos a mantenerlas en su mejor
+                    cada producto.</p>
+            </div>
+            <div class="service">
+                <i class="bi bi-star"></i>
+                <h3>COORDINACION DE VENTA</h3>
+                <p>Contacta con nosotros para coordinar tu consulta y recibir asesoramiento personalizado sobre nuestros
+                    servicios.</p>
+            </div>
+        </section>
+        <section id="sobre-mi" class="section-container">
+            <div class="text-container texto-start ">
+                <h2>Quienes somos</h2>
+                <br>
+                <p>MasterBikes es una empresa con 15 años de intenso trabajo en el mundo del motociclismo respaldado por un equipo de trabajo multidisciplinario con vasta
+                    experiencia en el mercado y enfocado en las necesidades individuales de todos nuestros clientes.</p>
+                <p>Atendiendo la constante necesidad de crecimiento incorporamos el área de Bicicletas de competición, enfocándonos principalmente en descenso y enduro.</p>
+
+            </div>
+            <div class="image-container">
+                <img src="{% static 'images/equipo.jpg' %}" alt="equipo">
+            </div>
+        </section>
+        <section class="section-container">
+            <div class="image-container">
+                <img src="{% static 'images/tecnico.jpg' %}" alt="tecnico">
+            </div>
+            <div class="text-container texto-end ">
+                <h2>Arreglo de bicicletas</h2>
+                <br>
+                <p>
+                    En Masterbikes, ofrecemos servicios de reparación y mantenimiento de bicicletas con un equipo de técnicos especializados y años de experiencia. 
+                    Nos destacamos por nuestra atención personalizada, uso de repuestos de alta calidad y eficiencia en el servicio.
+                    Desde ajustes menores hasta reparaciones complejas, estamos aquí para que tu bicicleta funcione como nueva. 
+                    Visítanos en Calle Quinta 910 ¡Tu bici está en las mejores manos con Masterbikes!
+                </p>
+            </div>
+        </section>
+
+        <!-- Cards últimos servicios -->
+
+    </main>
+    <!--Footer-->
+
+    <br><footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col" style="margin-right: 150px;">
+                    <br>
+                    <h6>Horario de Atención</h6>
+                    <br>
+                    <p class="footer-text">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                    <p class="footer-text">Sábados: 8:00 AM - 1:00 PM</p>
+                    <p class="footer-text">Domingos: Cerrado</p>
+                    <p class="footer-text">Feriados: Cerrado</p>
+                </div>
+                <div class="col" style="margin-right: 150px;">
+                    <br><a href="https://www.prodemu.cl/" target="_blank">
+                        <img class="img-footer" src="{% static 'images/prodemu.png' %}"
+                            alt="logo.prodemu"></a>
+                    <br><br><a
+                        href="https://www.duoc.cl/?noticia_post_type=estudiantes-de-la-sede-valparaiso-desarrollaran-sitios-web-para-emprendedoras-beneficiadas-por-promedu"
+                        target="_blank">
+                        <img class="img-footer"
+                            src="https://www.duoc.cl/wp-content/themes/wordpress-duoc-cl/images/logo-duoc.svg"
+                            alt="logo.duoc"></a>
+
+                </div>
+                <div class="col">
+                    <br>
+                    <h6>Nuestras redes:</h6>
+                    <br>
+                    <div class="iconos">
+                        <a href="https://web.whatsapp.com/send?phone=56987795611" target="_blank"><i
+                                class="ri-whatsapp-line"></i></a>
+                        <a href="#"><i class="ri-instagram-line"></i></a>
+                        <a href="#"><i class="ri-tiktok-line"></i></a>
+                        <a href="#"><i class="ri-facebook-line"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <p class="footer-small"> Escuela de Informática y
+            Telecomunicaciones DuocUC | 2024 &copy;</p>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+</html>
